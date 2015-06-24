@@ -1,0 +1,483 @@
+\documentclass[c,12pt]{beamer}
+ \usepackage[T1]{fontenc} 
+ \usepackage[latin1]{inputenc}
+ \usepackage[french]{babel}
+ \selectlanguage{french}
+ \usetheme{Warsaw}
+ \usepackage{pslatex}
+ \usepackage{graphics}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{stmaryrd}
+\usepackage{nccmath}
+\usepackage{subfigure}
+
+\newcommand{\A}[0]{{\cal A}}
+\newcommand{\C}[0]{{\cal C}}
+\newcommand{\I}[0]{\cal I}
+\newcommand{\se}[1]{\medbreak \medbreak \section*{#1}}
+\newcommand{\sse}[1]{\medbreak \subsection*{#1}}
+\newcommand{\ssse}[1]{\subsubsection*{#1}}
+\newcommand{\Def}[0]{\ssse{Définition}}
+\newcommand{\The}[0]{\ssse{Théorème}}
+\newcommand{\Pro}[0]{\ssse{Propriété}}
+\newcommand{\mb}[1]{\mathbb{#1}}
+\newcommand{\Exo}[1]{\sse{Exercice #1}}
+\newcommand{\Que}[1]{\ssse{Question #1}}
+\newcommand{\ssi}[0]{\Leftrightarrow}
+\newcommand{\ra}[0]{\rightarrow}
+\newcommand{\Ra}[0]{\Rightarrow}
+\newcommand{\la}[0]{\leftarrow}
+\newcommand{\La}[0]{\Leftarrow}
+\newcommand{\llb}[0]{\llbracket}
+\newcommand{\rrb}[0]{\rrbracket}
+\newcommand{\dd}[0]{\txt{d}}
+\newcommand{\dr}[0]{\partial}
+\newcommand{\txt}[1]{\textrm{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\iso}[0]{\simeq}
+\renewcommand{\P}[0]{\cal P}
+\newcommand{\Fo}[0]{{\cal F}_0}
+\newcommand{\w}[0]{\omega}
+\newcommand{\mo}[0]{\models}
+\newcommand{\blo}[2]{\begin{block}{#1} #2 \end{block}}
+\newcommand{\cols}[1]{\begin{columns}#1\end{columns}}
+\newcommand{\col}[2]{\begin{column}{#1}#2\end{column}}
+\newcommand{\fig}[3]{\begin{figure} \includegraphics[scale = #1]{#2}\caption{#3}\end{figure}}
+\newcommand{\image}[2]{\begin{figure} \includegraphics[scale = #1]{#2}\end{figure}}
+
+
+\newcommand{\matrice}[1]{\left(\begin{matrix} #1 \end{matrix}\right)}
+\newcommand{\subfig}[1]{\subfigure{\includegraphics[width=40mm]{#1}}}
+\newcommand{\Arrow}{{ \raisebox{10\height}{\scalebox{1}{$\longrightarrow$}}}}
+\newcommand{\arrow}{{\raisebox{15\height}{\scalebox{1}{$\longrightarrow$}}}}
+
+\newcommand{\fram}[2]{\begin{frame} \frametitle{#1} #2 \end{frame}}
+
+%\usepackage[french,onelanguage]{algorithm2e}
+%\usepackage{algorithmique}
+
+\title{Echantillonnage irrégulier pour une homographie}
+\subtitle{Encadré par Enric Meinhardt et Jean-Michel Morel}
+ \author{Simon Barazer, Jean-Thomas De La Roche Saint-André, Hugo Moeneclaey, Shmuel Rakotonirina--Ricquebourg}
+ \date{Avril 2015}
+
+ \AtBeginSection[]{
+  \begin{frame}{Sommaire}
+  \small \tableofcontents[currentsection, hideothersubsections]
+  {\scriptsize   
+  
+  Bibliographie :
+     
+ \  \underline{Pyramidal parametrics} L. Williams - 1983
+  
+   \underline{Texture mapping polygons in perspective} PS. Heckbert - 1983
+ 
+   \underline{Real-time rendering} T. Akenine-Möller, E. Haines, N. Hoffman - 2008 
+    
+   \underline{High-quality multi-pass image resampling} R. Szeliski, S. Winder, \& M. Uyttendaele - 2010
+    
+    }
+  \end{frame} 
+}
+
+ \begin{document}
+ 
+\maketitle
+
+ %introduction by shmuel
+  \section{Qu'est-ce qu'une homographie ?}
+  \begin{frame}
+  \frametitle{Position du problème}
+   \small{Formule générale : $H : (x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ telle que $f'(x,y)=f(H(x,y))$}
+   \begin{figure}
+    \centering
+    \subfig{BriquesOriginal.png}
+    \arrow
+    \subfig{BriquesTransformed.png}
+    \caption{Effet d'une homographie}
+   \end{figure}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Position du problème}
+   \small{Formule générale : $H : (x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ telle que $f'(x,y)=f(H(x,y))$}
+   \begin{figure}
+    \centering
+    \subfig{BriquesOriginal.png}
+    \arrow
+    \subfig{BriquesTransformedExtended.png}
+    \caption{Effet d'une homographie prolongée périodiquement}
+   \end{figure}
+  \end{frame}
+
+
+
+ 
+ \fram{Méthode naïve}{
+ 	\cols{
+ 		\col{5cm}{$f'(x,y)=f(H(x,y))$ 
+			\medbreak
+			On applique naïvement cette formule : valeur du pixel le plus proche
+			\fig{0.25}{imageproque.jpg}{Pourquoi cela ne fonctionne pas}
+		}
+		\col{5cm}{
+			\fig{0.3}{barbara}{Une application naïve sur une image périodique}
+		}
+ 	}
+ }
+ %Et slide sur la zone à intégrer
+ 
+ 
+ %moi+jeanthomas
+ \section{Méthodes actuelles}
+ 
+ \subsection{Mip-map}
+ 
+\fram{Approximation à l'aide du Mip-map}{
+	\cols{
+		\col{5cm}{
+			Présenté par Williams, \underline{Pyramidal parametrics}, 1983
+ %$\ra$ Précalcul de zones%eventuellemnt image des parallélogramme
+			\image{0.3}{approx.jpg}
+			\blo{Problèmes}
+			{
+				\begin{itemize}
+				\item Fonctions de distance
+				\item Construction du mip-map
+				\end{itemize}
+			}
+		}
+		\col{5cm}{\fig{0.35}{MipMap_real}{Un exemple de Mip-map}}
+	}
+}
+ 
+ 
+ \fram{L'interpolation trilinéaire}{\image{0.5}{intertri.jpg}}
+ 
+ 
+ \fram{}{\fig{0.4}{Image_naive_homo_1}{Déformation de l'image par la méthode naïve}}
+ 
+ \fram{}{\fig{0.4}{Image_mipmap_homo_1}{Déformation à l'aide d'un mip-map avec filtre gaussien}}
+ 
+ \subsection{Rip-map}
+ 
+ \fram{Le Rip-map}{
+	\cols{ 
+ 		\col{5cm}{L'isotropie n'est pas satisfaisante. 
+			\image{0.2}{carrepasbien.jpg}
+			$\ra$ introduction d'anisotropie 
+			%blablabla
+			\medbreak
+			Fonctions de distance dans $\mb{R}^2$
+		}
+		\col{5cm}{\fig{0.25}{Ripmap_real}{Un exemple de Ripmap}}
+ 	}
+ }
+ 
+  \fram{L'interpolation bi-bi-linéaire}{\image{0.35}{interbibi.jpg}}
+  
+  \fram{}{\fig{0.4}{Image_mipmap_homo_2}{Déformation de l'image à l'aide d'un mip-map}}
+   
+  \fram{}{\fig{0.4}{Image_ripmap_homo_2}{Déformation de l'image à l'aide d'un rip-map}}
+     
+     
+     
+    
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+ \section{Directions à explorer}
+
+%truc simon a inséréer sur affine
+
+\subsection{Méthode anti-aliasing pour les affinités}
+
+\begin{frame}{Etude des shears (cisaillement)}
+
+Introduit dans Szeliski, \underline{High quality multi-pass image resampling} en 2010. 
+
+\begin{itemize}
+\item minimiser l'aliasing sans filtrage préalable.
+\end{itemize}
+
+\begin{columns}
+\begin{column}{5cm}
+
+\begin{block}{Algorithme pour un shear }
+
+$\ra$ trois étapes :
+
+\begin{itemize}
+\item zoom avant
+\item shear
+\item filtrage passe bas et zoom arrière
+\end{itemize}
+
+\end{block}
+  
+ \end{column}
+
+\begin{column}{5cm}
+
+\begin{figure}
+\centering
+\includegraphics[width=4cm]{dragonshear.jpg}
+\caption{Shear horizontal}
+\end{figure}
+
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Illustration de la méthode dans le domaine de fourier }
+
+\begin{figure}
+\centering
+\includegraphics[width=7cm]{fourier1.jpg}
+\caption{Méthode de Szeliski}
+\end{figure}
+
+\begin{columns}
+\begin{column}{4cm}
+
+\begin{figure}
+\centering
+\includegraphics[width=3cm]{fourier2.jpg}
+\caption{Méthode naïve}
+\end{figure}
+
+%On observe un repliement du spectre ce qui provoque de l'aliasing.
+
+\end{column}
+
+\begin{column}{6cm}
+
+\begin{figure}
+\centering
+\includegraphics[width=5cm]{fourier3.jpg}
+\caption{Méthode par filtrage}
+\end{figure}
+
+%Une partie du spectre a Ã©tÃ© perdue lors du filtrage
+
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Méthode finale pour les affinités}
+%rajouter qqvh....
+\begin{itemize}
+\item Affinités $\ra$ composée de deux shears.
+%$A=S_v \circ S_h$
+\item translations sur les lignes et les colonnes.
+%\item On réutilise la méthode développée pour les shears.
+%\item L'algorithme final se décompose en 6 étapes que l'on peut réduire à  4.
+\end{itemize}
+
+\begin{block}{Schémas de l'algorithme final}
+
+\begin{itemize}
+\item Zoom avant vertical
+\item Shear horizontal
+\item Shear vertical
+\item Filtrage passe bas et zoom arrière horizontal
+\end{itemize}
+
+\end{block}
+
+\end{frame}
+
+
+%eventuellement expérience affinité
+
+\fram{}{\fig{0.4}{shearAliase.png}{Shear par la méthode naïve}}
+
+\fram{}{\fig{0.4}{shearPasAliase.png}{Shear par la méthode de Szeliski}}
+
+\begin{frame}
+\begin{figure}
+\centering
+\includegraphics[width=6cm]{zoom_shear_aliase.png}
+\caption{Méthode naïve}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\centering
+\includegraphics[width=6cm]{zoom_shear_pas_aliase.png}
+\caption{Méthode de Szélisky}
+\end{figure}
+\end{frame}
+
+
+ \subsection{Décomposition d'une homographie}
+
+  \subsubsection{Homographie particulière}
+
+  \begin{frame}
+  \frametitle{Décomposition d'une homographie}
+   Se ramener à  $H_{N,\lambda} : (x,y) \mapsto \left(\frac{\lambda x}{1+Nx},\frac{\lambda y}{1+Nx}\right)$ par des affinités :
+   \[H = A_1 H_{N,\lambda} A_2\]
+   \begin{figure}
+    \centering
+  \subfig{balloon}
+    \arrow
+    \subfig{Image_homo_particuliere_opt}
+    \caption{Effet de l'homographie particulière}
+   \end{figure}
+  \end{frame}
+  
+
+  
+\subsubsection{Visualisation d'une dÃ©composition}
+  \begin{frame}
+  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  \begin{figure}
+   \subfigure[$f(x,y)$]{\includegraphics[width=40mm]{VisuDecompo1.jpg}}
+   \Arrow
+   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2.jpg}}
+   \caption{Première affinité}
+  \end{figure}
+  \end{frame}
+  
+  \begin{frame}
+  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  \begin{figure}
+   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2.jpg}}
+   \caption{Première image intermédiaire}
+  \end{figure}
+  \end{frame}
+  
+  \begin{frame}
+  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  \begin{figure}
+   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2pti.jpg}}
+   \Arrow
+   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3pti.jpg}}
+   \caption{Homographie particulière}
+  \end{figure}
+  \end{frame}
+  
+  \begin{frame}
+  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  \begin{figure}
+   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2grid.jpg}}
+   \Arrow
+   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3grid.jpg}}
+   \caption{Homographie particulière}
+  \end{figure}
+  \end{frame}
+  
+  \begin{frame}
+  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  \begin{figure}
+   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2pti.jpg}}
+   \Arrow
+   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3pti.jpg}}
+   \caption{Homographie particulière}
+  \end{figure}
+  \end{frame}
+  
+  \begin{frame}
+  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  \begin{figure}
+   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3.jpg}}
+   \caption{Deuxième image intermédiaire}
+  \end{figure}
+  \end{frame}
+  
+  \begin{frame}
+  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  \begin{figure}
+   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3.jpg}}
+   \Arrow
+   \subfigure[$f(A_1H_{N,\lambda}A_2(x,y))$]{\includegraphics[width=40mm]{VisuDecompo4.jpg}}
+   \caption{Rotation}
+  \end{figure}
+  \end{frame}
+  
+  \begin{frame}
+  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  \begin{figure}
+   \subfigure[$f(x,y)$]{\includegraphics[width=30mm]{VisuDecompo1.jpg}}
+   \raisebox{7\height}{$\longrightarrow$}
+   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=30mm]{VisuDecompo2.jpg}}\\
+   $\downarrow$
+   \phantom{$\longrightarrow$}
+   \phantom{$\longrightarrow$}
+   \phantom{$\longrightarrow$}
+   \phantom{$\longrightarrow$}
+   \phantom{$\longrightarrow$}
+   $\downarrow$\\
+   \subfigure[$f(H(x,y))$]{\includegraphics[width=30mm]{VisuDecompo4.jpg}}
+   \raisebox{7\height}{\scalebox{1}{$\longleftarrow$}}
+   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=30mm]{VisuDecompo3.jpg}}
+   \caption{Homographie totale}
+  \end{figure}
+  \end{frame}
+
+
+
+
+
+
+\begin{frame}{Perspectives}
+
+\textbf{A suivre :} Travail sur $H_{N,\lambda}$ :\\
+	\begin{itemize}
+                \item décomposition lignes-colonnes ?
+                \item à l'aide d'une méthode similaire à celle des affinités ?
+                \item à l'aide d'une méthode intégrale ?
+                \item à l'aide d'un mip-map unidimensionnel ? 
+                \item interprétation géométrique par caméra ?
+                \end{itemize}
+% je ne sais pas quel nom donner Ã  sa mÃ©thode...
+\begin{tabular}{c}
+		\includegraphics[width=0.5\textwidth]{murhomographie.jpg}\\
+                       {\small Ex : Méthode par séparation}
+	\end{tabular}
+\end{frame}
+
+
+
+
+
+
+  \appendix
+  \section{Appendice}
+\fram{}{  $(x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ est notée $\matrice{a&b&p\\c&d&q\\r&s&t}$.
+   
+   Si $H = \matrice{a&b&p\\c&d&q\\r&s&1}$, la décomposition actuelle est $H=A_1H_{N,\lambda}A_2$ avec
+   \[A_1 = \matrice{\frac{\tau\Delta_1-pN+\Gamma_1/N}{\lambda} & \frac{\Delta_1/N}{\lambda} & p-\tau\Delta_1/N\\ \frac{\tau\Delta_2-qN+\Gamma_2/N}{\lambda} & \frac{\Delta_2/N}{\lambda} & q-\tau\Delta_2/N\\ 0 & 0 & 1}, H_{N,\lambda} = \matrice{\lambda & 0 & 0\\0 & \lambda & 0\\N & 0 & 1} \]
+   \[\text{et }A_2 = \matrice{r/N & s/N & 0\\-s/N & r/N & \tau\\0 & 0 & 1}\]
+   où $N=\sqrt{r^2+s^2}$, $\Delta_1=br-as$, $\Delta_2=dr-cs$, $\Gamma_1 = ar+bs$, $\Gamma_2 = cr+ds$ et $\tau$ et $\lambda$ sont laissés libres.
+   
+   
+  }
+ 
+ \fram{Schema pour le ripmap}{\image{0.5}{pbripmap}}
+ 
+\end{document}
+ 
+ 
+ 
+ 
+ 
+ 
+\begin{frame}{DÃ©tail de la mÃ©thode de SzÃ©liski}
+\paragraph{MÃ©thode d'interpolation}
+\begin{equation*}
+f'(i,j)=\underset{k}{\sum}
+\end{equation*}
+\end{frame}
