@@ -11,6 +11,7 @@
 \usepackage{stmaryrd}
 \usepackage{nccmath}
 \usepackage{subfigure}
+\usepackage{color}
 
 \newcommand{\A}[0]{{\cal A}}
 \newcommand{\C}[0]{{\cal C}}
@@ -47,6 +48,7 @@
 \newcommand{\col}[2]{\begin{column}{#1}#2\end{column}}
 \newcommand{\fig}[3]{\begin{figure} \includegraphics[scale = #1]{#2}\caption{#3}\end{figure}}
 \newcommand{\image}[2]{\begin{figure} \includegraphics[scale = #1]{#2}\end{figure}}
+\newcommand{\gray}{\textcolor{gray}}
 
 
 \newcommand{\matrice}[1]{\left(\begin{matrix} #1 \end{matrix}\right)}
@@ -201,17 +203,16 @@
 
   \subsubsection{Homographie unidirectionnelle}
 
-  \begin{frame} %ici tout est à changer
-  \frametitle{Décomposition d'une homographie}
-   Se ramener à  $H_{N,\lambda} : (x,y) \mapsto \left(\frac{\lambda x}{1+Nx},\frac{\lambda y}{1+Nx}\right)$ par des affinités :
-   \[H = A_1 H_{N,\lambda} A_2\]
-   \begin{figure}
-    \centering
-  \subfig{balloon}
-    \arrow
-    \subfig{Image_homo_particuliere_opt}
-    \caption{Effet de l'homographie particulière}
-   \end{figure}
+  \begin{frame}{Homographie unidirectionnelle}
+   \begin{block}{Définition}
+    Une homographie unidirectionnelle est une homographie de la forme
+    \[\tilde H : (x,y) \mapsto \left(\frac{ax+\gray{by}+p}{rx+\gray{sy}+t},\frac{\gray{cx}+dy+q}{rx+\gray{sy}+t}\right)\]
+    avec $b=c=s=0$
+   \end{block}
+   \begin{block}{Théorème}
+    Pour toute homographie $H$, il existe $T$ une translation, $R_\phi$ et $R_\psi$ des rotations et $\tilde H$ une homographie unidirectionnelle telle que
+    \[H = T R_\phi \tilde H R_\psi\]
+   \end{block}
   \end{frame}
   
 
