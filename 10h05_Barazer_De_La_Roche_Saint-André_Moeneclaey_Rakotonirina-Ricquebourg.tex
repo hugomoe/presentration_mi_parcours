@@ -18,9 +18,9 @@
 \newcommand{\se}[1]{\medbreak \medbreak \section*{#1}}
 \newcommand{\sse}[1]{\medbreak \subsection*{#1}}
 \newcommand{\ssse}[1]{\subsubsection*{#1}}
-\newcommand{\Def}[0]{\ssse{Définition}}
-\newcommand{\The}[0]{\ssse{Théorème}}
-\newcommand{\Pro}[0]{\ssse{Propriété}}
+\newcommand{\Def}[0]{\ssse{DÃ©finition}}
+\newcommand{\The}[0]{\ssse{ThÃ©orÃ¨me}}
+\newcommand{\Pro}[0]{\ssse{PropriÃ©tÃ©}}
 \newcommand{\mb}[1]{\mathbb{#1}}
 \newcommand{\Exo}[1]{\sse{Exercice #1}}
 \newcommand{\Que}[1]{\ssse{Question #1}}
@@ -59,10 +59,10 @@
 %\usepackage[french,onelanguage]{algorithm2e}
 %\usepackage{algorithmique}
 
-\title{Echantillonnage irrégulier pour une homographie}
-\subtitle{Encadré par Enric Meinhardt et Jean-Michel Morel}
- \author{Simon Barazer, Jean-Thomas De La Roche Saint-André, Hugo Moeneclaey, Shmuel Rakotonirina--Ricquebourg}
- \date{Avril 2015}
+\title{Ã‰chantillonnage irrÃ©gulier pour une homographie}
+\subtitle{EncadrÃ© par Jean-Michel Morel et Enric Meinhardt-Llopis}
+ \author{Simon Barazer, Jean-Thomas De La Roche Saint-AndrÃ©, Hugo Moeneclaey, Shmuel Rakotonirina--Ricquebourg}
+ \date{30 Juin 2015}
 
  \AtBeginSection[]{
   \begin{frame}{Sommaire}
@@ -71,13 +71,13 @@
   
   Bibliographie :
      
- \  \underline{Pyramidal parametrics} L. Williams - 1983
+ \ Â \underline{Pyramidal parametrics} L. Williams - 1983
   
-   \underline{Texture mapping polygons in perspective} PS. Heckbert - 1983
+ Â  \underline{Texture mapping polygons in perspective} PS. Heckbert - 1983
  
-   \underline{Real-time rendering} T. Akenine-Möller, E. Haines, N. Hoffman - 2008 
+ Â  \underline{Real-time rendering} T. Akenine-MÃ¶ller, E. Haines, N. Hoffman - 2008 
     
-   \underline{High-quality multi-pass image resampling} R. Szeliski, S. Winder, \& M. Uyttendaele - 2010
+ Â  \underline{High-quality multi-pass image resampling} R. Szeliski, S. Winder, \& M. Uyttendaele - 2010
     
     }
   \end{frame} 
@@ -90,8 +90,8 @@
  %introduction by shmuel
   \section{Qu'est-ce qu'une homographie ?}
   \begin{frame}
-  \frametitle{Position du problème}
-   \small{Formule générale : $H : (x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ telle que $f'(x,y)=f(H(x,y))$}
+  \frametitle{Position du problÃ¨me}
+   \small{Formule gÃ©nÃ©rale : $h : (x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ telle que $img'(x,y)=img(h(x,y))$}
    \begin{figure}
     \centering
     \subfig{BriquesOriginal.png}
@@ -101,69 +101,69 @@
    \end{figure}
   \end{frame}
   \begin{frame}
-    \frametitle{Position du problème}
-   \small{Formule générale : $H : (x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ telle que $f'(x,y)=f(H(x,y))$}
+    \frametitle{Position du problÃ¨me}
+   \small{Formule gÃ©nÃ©rale : $h : (x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ telle que $img'(x,y)=img(h(x,y))$}
    \begin{figure}
     \centering
     \subfig{BriquesOriginal.png}
     \arrow
     \subfig{BriquesTransformedExtended.png}
-    \caption{Effet d'une homographie prolongée périodiquement}
+    \caption{Effet d'une homographie prolongÃ©e pÃ©riodiquement}
    \end{figure}
   \end{frame}
 
 
 
  
- \fram{Méthode naïve}{
+ \fram{MÃ©thode naÃ¯ve}{
  	\cols{
- 		\col{5cm}{$f'(x,y)=f(H(x,y))$ 
+ 		\col{5cm}{$img'(x,y)=img(h(x,y))$ 
 			\medbreak
-			On applique naïvement cette formule : valeur du pixel le plus proche
+			On applique naÃ¯vement cette formule : valeur du pixel le plus proche
 			\fig{0.25}{imageproque.jpg}{Pourquoi cela ne fonctionne pas}
 		}
 		\col{5cm}{
-			\fig{0.3}{barbara}{Une application naïve sur une image périodique}
+			\fig{0.3}{barbara}{Une application naÃ¯ve sur une image pÃ©riodique}
 		}
  	}
  }
- %Et slide sur la zone à intégrer
+ %Et slide sur la zone Ã  intÃ©grer
  
  
  %moi+jeanthomas
- \section{Méthodes actuelles}
+ \section{MÃ©thodes actuelles}
  
- \subsection{Mip-map}
+ \subsection{Mipmap}
  
-\fram{Approximation à l'aide du Mip-map}{
+\fram{Approximation Ã  l'aide du Mipmap}{
 	\cols{
 		\col{5cm}{
-			Présenté par Williams, \underline{Pyramidal parametrics}, 1983
- %$\ra$ Précalcul de zones%eventuellemnt image des parallélogramme
+			PrÃ©sentÃ© par Williams, \underline{Pyramidal parametrics}, 1983 %le mettre en bas de page ?
+ %$\ra$ PrÃ©calcul de zones%eventuellemnt image des parallÃ©logramme
 			\image{0.3}{approx.jpg}
-			\blo{Problèmes}
+			\blo{ProblÃ¨mes}
 			{
 				\begin{itemize}
 				\item Fonctions de distance
-				\item Construction du mip-map
+				\item Construction du Mipmap
 				\end{itemize}
 			}
 		}
-		\col{5cm}{\fig{0.35}{MipMap_real}{Un exemple de Mip-map}}
+		\col{5cm}{\fig{0.35}{MipMap_real}{Un exemple de Mipmap}}
 	}
 }
  
  
- \fram{L'interpolation trilinéaire}{\image{0.5}{intertri.jpg}}
+ \fram{L'interpolation trilinÃ©aire}{\image{0.5}{intertri.jpg}}
  
  
- \fram{}{\fig{0.4}{Image_naive_homo_1}{Déformation de l'image par la méthode naïve}}
+ \fram{}{\fig{0.4}{Image_naive_homo_1}{DÃ©formation de l'image par la mÃ©thode naÃ¯ve}}
  
- \fram{}{\fig{0.4}{Image_mipmap_homo_1}{Déformation à l'aide d'un mip-map avec filtre gaussien}}
+ \fram{}{\fig{0.4}{Image_mipmap_homo_1}{DÃ©formation Ã  l'aide d'un Mipmap avec filtre gaussien}}
  
- \subsection{Rip-map}
+ \subsection{Ripmap}
  
- \fram{Le Rip-map}{
+ \fram{Le Ripmap}{
 	\cols{ 
  		\col{5cm}{L'isotropie n'est pas satisfaisante. 
 			\image{0.2}{carrepasbien.jpg}
@@ -176,11 +176,11 @@
  	}
  }
  
-  \fram{L'interpolation bi-bi-linéaire}{\image{0.35}{interbibi.jpg}}
+  \fram{L'interpolation quadrilinÃ©aire}{\image{0.35}{interbibi.jpg}}
   
-  \fram{}{\fig{0.4}{Image_mipmap_homo_2}{Déformation de l'image à l'aide d'un mip-map}}
+  \fram{}{\fig{0.4}{Image_mipmap_homo_2}{DÃ©formation de l'image Ã  l'aide d'un Mipmap}}
    
-  \fram{}{\fig{0.4}{Image_ripmap_homo_2}{Déformation de l'image à l'aide d'un rip-map}}
+  \fram{}{\fig{0.4}{Image_ripmap_homo_2}{DÃ©formation de l'image Ã  l'aide d'un Ripmap}}
      
      
      
@@ -195,31 +195,31 @@
      
      
      
- \section{Directions à explorer}
+ \section{Directions Ã  explorer}
 
-%truc simon a inséréer sur affine
+%truc simon a insÃ©rÃ©er sur affine
 
-\subsection{Méthode anti-aliasing pour les affinités}
+\subsection{MÃ©thode anti-aliasing pour les affinitÃ©s}
 
-\begin{frame}{Etude des shears (cisaillement)}
+\begin{frame}{Etude des \emph{shears} (cisaillement)}
 
-Introduit dans Szeliski, \underline{High quality multi-pass image resampling} en 2010. 
+Introduit dans Szeliski, \underline{High quality multi-pass image resampling} en 2010. %mettre en bas de page ?
 
 \begin{itemize}
-\item minimiser l'aliasing sans filtrage préalable.
+\item minimiser l'aliasing sans filtrage prÃ©alable.
 \end{itemize}
 
 \begin{columns}
 \begin{column}{5cm}
 
-\begin{block}{Algorithme pour un shear }
+\begin{block}{Algorithme pour un \emph{shear}}
 
-$\ra$ trois étapes :
+$\ra$ trois Ã©tapes :
 
 \begin{itemize}
 \item zoom avant
-\item shear
-\item filtrage passe bas et zoom arrière
+\item \emph{shear}
+\item filtrage passe bas et zoom arriÃ¨re
 \end{itemize}
 
 \end{block}
@@ -231,19 +231,19 @@ $\ra$ trois étapes :
 \begin{figure}
 \centering
 \includegraphics[width=4cm]{dragonshear.jpg}
-\caption{Shear horizontal}
+\caption{\emph{Shear} horizontal}
 \end{figure}
 
 \end{column}
 \end{columns}
 \end{frame}
 
-\begin{frame}{Illustration de la méthode dans le domaine de fourier }
+\begin{frame}{Illustration de la mÃ©thode dans le domaine de Fourier }
 
 \begin{figure}
 \centering
 \includegraphics[width=7cm]{fourier1.jpg}
-\caption{Méthode de Szeliski}
+\caption{MÃ©thode de Szeliski}
 \end{figure}
 
 \begin{columns}
@@ -252,7 +252,7 @@ $\ra$ trois étapes :
 \begin{figure}
 \centering
 \includegraphics[width=3cm]{fourier2.jpg}
-\caption{Méthode naïve}
+\caption{MÃ©thode naÃ¯ve}
 \end{figure}
 
 %On observe un repliement du spectre ce qui provoque de l'aliasing.
@@ -264,33 +264,33 @@ $\ra$ trois étapes :
 \begin{figure}
 \centering
 \includegraphics[width=5cm]{fourier3.jpg}
-\caption{Méthode par filtrage}
+\caption{MÃ©thode par filtrage}
 \end{figure}
 
-%Une partie du spectre a Ã©tÃ© perdue lors du filtrage
+%Une partie du spectre a ÃƒÂ©tÃƒÂ© perdue lors du filtrage
 
 \end{column}
 \end{columns}
 
 \end{frame}
 
-\begin{frame}{Méthode finale pour les affinités}
+\begin{frame}{MÃ©thode finale pour les affinitÃ©s}
 %rajouter qqvh....
 \begin{itemize}
-\item Affinités $\ra$ composée de deux shears.
+\item AffinitÃ©s $\ra$ composÃ©e de deux \emph{shears}.
 %$A=S_v \circ S_h$
 \item translations sur les lignes et les colonnes.
-%\item On réutilise la méthode développée pour les shears.
-%\item L'algorithme final se décompose en 6 étapes que l'on peut réduire à  4.
+%\item On rÃ©utilise la mÃ©thode dÃ©veloppÃ©e pour les \emph{shears}.
+%\item L'algorithme final se dÃ©compose en 6 Ã©tapes que l'on peut rÃ©duire Ã   4.
 \end{itemize}
 
-\begin{block}{Schémas de l'algorithme final}
+\begin{block}{SchÃ©mas de l'algorithme final}
 
 \begin{itemize}
 \item Zoom avant vertical
-\item Shear horizontal
-\item Shear vertical
-\item Filtrage passe bas et zoom arrière horizontal
+\item \emph{Shear} horizontal
+\item \emph{Shear} vertical
+\item Filtrage passe bas et zoom arriÃ¨re horizontal
 \end{itemize}
 
 \end{block}
@@ -298,17 +298,17 @@ $\ra$ trois étapes :
 \end{frame}
 
 
-%eventuellement expérience affinité
+%eventuellement expÃ©rience affinitÃ©
 
-\fram{}{\fig{0.4}{shearAliase.png}{Shear par la méthode naïve}}
+\fram{}{\fig{0.4}{shearAliase.png}{\emph{Shear} par la mÃ©thode naÃ¯ve}}
 
-\fram{}{\fig{0.4}{shearPasAliase.png}{Shear par la méthode de Szeliski}}
+\fram{}{\fig{0.4}{shearPasAliase.png}{\emph{Shear} par la mÃ©thode de Szeliski}}
 
 \begin{frame}
 \begin{figure}
 \centering
 \includegraphics[width=6cm]{zoom_shear_aliase.png}
-\caption{Méthode naïve}
+\caption{MÃ©thode naÃ¯ve}
 \end{figure}
 \end{frame}
 
@@ -316,25 +316,25 @@ $\ra$ trois étapes :
 \begin{figure}
 \centering
 \includegraphics[width=6cm]{zoom_shear_pas_aliase.png}
-\caption{Méthode de Szélisky}
+\caption{MÃ©thode de Szeliski}
 \end{figure}
 \end{frame}
 
 
- \subsection{Décomposition d'une homographie}
+ \subsection{DÃ©composition d'une homographie}
 
-  \subsubsection{Homographie particulière}
+  \subsubsection{Homographie unidirectionnelle}
 
-  \begin{frame}
-  \frametitle{Décomposition d'une homographie}
-   Se ramener à  $H_{N,\lambda} : (x,y) \mapsto \left(\frac{\lambda x}{1+Nx},\frac{\lambda y}{1+Nx}\right)$ par des affinités :
+  \begin{frame} %ici tout est Ã  changer
+  \frametitle{DÃ©composition d'une homographie}
+   Se ramener Ã Â  $H_{N,\lambda} : (x,y) \mapsto \left(\frac{\lambda x}{1+Nx},\frac{\lambda y}{1+Nx}\right)$ par des affinitÃ©s :
    \[H = A_1 H_{N,\lambda} A_2\]
    \begin{figure}
     \centering
   \subfig{balloon}
     \arrow
     \subfig{Image_homo_particuliere_opt}
-    \caption{Effet de l'homographie particulière}
+    \caption{Effet de l'homographie particuliÃ¨re}
    \end{figure}
   \end{frame}
   
@@ -342,63 +342,63 @@ $\ra$ trois étapes :
   
 \subsubsection{Visualisation d'une dÃ©composition}
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  Cas de la dÃ©composition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinitÃ© et $A_2$ une rotation.
   \begin{figure}
    \subfigure[$f(x,y)$]{\includegraphics[width=40mm]{VisuDecompo1.jpg}}
    \Arrow
    \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2.jpg}}
-   \caption{Première affinité}
+   \caption{PremiÃ¨re affinitÃ©}
   \end{figure}
   \end{frame}
   
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  Cas de la dÃ©composition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinitÃ© et $A_2$ une rotation.
   \begin{figure}
    \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2.jpg}}
-   \caption{Première image intermédiaire}
+   \caption{PremiÃ¨re image intermÃ©diaire}
   \end{figure}
   \end{frame}
   
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  Cas de la dÃ©composition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinitÃ© et $A_2$ une rotation.
   \begin{figure}
    \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2pti.jpg}}
    \Arrow
    \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3pti.jpg}}
-   \caption{Homographie particulière}
+   \caption{Homographie particuliÃ¨re}
   \end{figure}
   \end{frame}
   
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  Cas de la dÃ©composition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinitÃ© et $A_2$ une rotation.
   \begin{figure}
    \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2grid.jpg}}
    \Arrow
    \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3grid.jpg}}
-   \caption{Homographie particulière}
+   \caption{Homographie particuliÃ¨re}
   \end{figure}
   \end{frame}
   
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  Cas de la dÃ©composition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinitÃ© et $A_2$ une rotation.
   \begin{figure}
    \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2pti.jpg}}
    \Arrow
    \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3pti.jpg}}
-   \caption{Homographie particulière}
+   \caption{Homographie particuliÃ¨re}
   \end{figure}
   \end{frame}
   
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  Cas de la dÃ©composition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinitÃ© et $A_2$ une rotation.
   \begin{figure}
    \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3.jpg}}
-   \caption{Deuxième image intermédiaire}
+   \caption{DeuxiÃ¨me image intermÃ©diaire}
   \end{figure}
   \end{frame}
   
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  Cas de la dÃ©composition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinitÃ© et $A_2$ une rotation.
   \begin{figure}
    \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3.jpg}}
    \Arrow
@@ -408,7 +408,7 @@ $\ra$ trois étapes :
   \end{frame}
   
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
+  Cas de la dÃ©composition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinitÃ© et $A_2$ une rotation.
   \begin{figure}
    \subfigure[$f(x,y)$]{\includegraphics[width=30mm]{VisuDecompo1.jpg}}
    \raisebox{7\height}{$\longrightarrow$}
@@ -436,16 +436,16 @@ $\ra$ trois étapes :
 
 \textbf{A suivre :} Travail sur $H_{N,\lambda}$ :\\
 	\begin{itemize}
-                \item décomposition lignes-colonnes ?
-                \item à l'aide d'une méthode similaire à celle des affinités ?
-                \item à l'aide d'une méthode intégrale ?
-                \item à l'aide d'un mip-map unidimensionnel ? 
-                \item interprétation géométrique par caméra ?
+                \item dÃ©composition lignes-colonnes ?
+                \item Ã  l'aide d'une mÃ©thode similaire Ã  celle des affinitÃ©s ?
+                \item Ã  l'aide d'une mÃ©thode intÃ©grale ?
+                \item Ã  l'aide d'un mip-map unidimensionnel ? 
+                \item interprÃ©tation gÃ©omÃ©trique par camÃ©ra ?
                 \end{itemize}
-% je ne sais pas quel nom donner Ã  sa mÃ©thode...
+% je ne sais pas quel nom donner Ãƒ  sa mÃƒÂ©thode...
 \begin{tabular}{c}
 		\includegraphics[width=0.5\textwidth]{murhomographie.jpg}\\
-                       {\small Ex : Méthode par séparation}
+                       {\small Ex : MÃ©thode par sÃ©paration}
 	\end{tabular}
 \end{frame}
 
@@ -456,12 +456,12 @@ $\ra$ trois étapes :
 
   \appendix
   \section{Appendice}
-\fram{}{  $(x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ est notée $\matrice{a&b&p\\c&d&q\\r&s&t}$.
+\fram{}{  $(x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ est notÃ©e $\matrice{a&b&p\\c&d&q\\r&s&t}$. %cette frame doit Ãªtre allÃ©grement supprimÃ©e
    
-   Si $H = \matrice{a&b&p\\c&d&q\\r&s&1}$, la décomposition actuelle est $H=A_1H_{N,\lambda}A_2$ avec
+   Si $H = \matrice{a&b&p\\c&d&q\\r&s&1}$, la dÃ©composition actuelle est $H=A_1H_{N,\lambda}A_2$ avec
    \[A_1 = \matrice{\frac{\tau\Delta_1-pN+\Gamma_1/N}{\lambda} & \frac{\Delta_1/N}{\lambda} & p-\tau\Delta_1/N\\ \frac{\tau\Delta_2-qN+\Gamma_2/N}{\lambda} & \frac{\Delta_2/N}{\lambda} & q-\tau\Delta_2/N\\ 0 & 0 & 1}, H_{N,\lambda} = \matrice{\lambda & 0 & 0\\0 & \lambda & 0\\N & 0 & 1} \]
    \[\text{et }A_2 = \matrice{r/N & s/N & 0\\-s/N & r/N & \tau\\0 & 0 & 1}\]
-   où $N=\sqrt{r^2+s^2}$, $\Delta_1=br-as$, $\Delta_2=dr-cs$, $\Gamma_1 = ar+bs$, $\Gamma_2 = cr+ds$ et $\tau$ et $\lambda$ sont laissés libres.
+   oÃ¹ $N=\sqrt{r^2+s^2}$, $\Delta_1=br-as$, $\Delta_2=dr-cs$, $\Gamma_1 = ar+bs$, $\Gamma_2 = cr+ds$ et $\tau$ et $\lambda$ sont laissÃ©s libres.
    
    
   }
@@ -475,8 +475,8 @@ $\ra$ trois étapes :
  
  
  
-\begin{frame}{DÃ©tail de la mÃ©thode de SzÃ©liski}
-\paragraph{MÃ©thode d'interpolation}
+\begin{frame}{DÃƒÂ©tail de la mÃƒÂ©thode de SzÃƒÂ©liski}
+\paragraph{MÃƒÂ©thode d'interpolation}
 \begin{equation*}
 f'(i,j)=\underset{k}{\sum}
 \end{equation*}
