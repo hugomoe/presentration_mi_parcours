@@ -403,54 +403,20 @@ $\ra$ trois étapes :
      
 \section{Expériences et résultats}
      
-     
-     
-    
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-\begin{frame}{Perspectives}
 
-\textbf{A suivre :} Travail sur $H_{N,\lambda}$ :\\
-	\begin{itemize}
-                \item décomposition lignes-colonnes ?
-                \item à l'aide d'une méthode similaire à celle des affinités ?
-                \item à l'aide d'une méthode intégrale ?
-                \item à l'aide d'un mip-map unidimensionnel ? 
-                \item interprétation géométrique par caméra ?
-                \end{itemize}
-% je ne sais pas quel nom donner Ã  sa mÃ©thode...
-\begin{tabular}{c}
-		\includegraphics[width=0.5\textwidth]{murhomographie.jpg}\\
-                       {\small Ex : Méthode par séparation}
-	\end{tabular}
-\end{frame}
+\fram{}{\fig{0.35}{img_geo_5.png}{Homographie 1 à l'aide de la décomposition}}
+\fram{}{\fig{0.35}{img_ripmap_5.png}{Homographie 1 à l'aide du Ripmap}}
+
+\fram{}{\fig{1.5}{img_geo_moustache.png}{Homographie 1 à l'aide de la décomposition (détail)}}
+\fram{}{\fig{1.5}{img_ripmap_moustache.png}{Homographie 1 à l'aide du Ripmap (détail)}}
+
+\fram{}{\fig{0.35}{img_f_2.png}{Homographie 1 à l'aide de la décomposition}}
+\fram{}{\fig{0.35}{img_ripmap_2.png}{Homographie 1 à l'aide du Ripmap}}
 
 
 
-
-
-
-  \appendix
-  \section{Appendice}
-\fram{}{  $(x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ est notée $\matrice{a&b&p\\c&d&q\\r&s&t}$. %cette frame doit être allégrement supprimée
-   
-   Si $H = \matrice{a&b&p\\c&d&q\\r&s&1}$, la décomposition actuelle est $H=A_1H_{N,\lambda}A_2$ avec
-   \[A_1 = \matrice{\frac{\tau\Delta_1-pN+\Gamma_1/N}{\lambda} & \frac{\Delta_1/N}{\lambda} & p-\tau\Delta_1/N\\ \frac{\tau\Delta_2-qN+\Gamma_2/N}{\lambda} & \frac{\Delta_2/N}{\lambda} & q-\tau\Delta_2/N\\ 0 & 0 & 1}, H_{N,\lambda} = \matrice{\lambda & 0 & 0\\0 & \lambda & 0\\N & 0 & 1} \]
-   \[\text{et }A_2 = \matrice{r/N & s/N & 0\\-s/N & r/N & \tau\\0 & 0 & 1}\]
-   où $N=\sqrt{r^2+s^2}$, $\Delta_1=br-as$, $\Delta_2=dr-cs$, $\Gamma_1 = ar+bs$, $\Gamma_2 = cr+ds$ et $\tau$ et $\lambda$ sont laissés libres.
-   
-   
-  }
  
- \fram{Schema pour le ripmap}{\image{0.5}{pbripmap}}
+% \fram{Schema pour le ripmap}{\image{0.5}{pbripmap}}
  
 \end{document}
  
