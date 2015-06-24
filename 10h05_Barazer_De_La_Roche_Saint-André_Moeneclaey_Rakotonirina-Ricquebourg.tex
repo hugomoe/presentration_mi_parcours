@@ -195,11 +195,72 @@
      
      
      
- \section{Directions à explorer}
+\section{Méthode géométrique}
+ 
+ \subsection{Décomposition d'une homographie}
+
+  \subsubsection{Homographie unidirectionnelle}
+
+  \begin{frame} %ici tout est à changer
+  \frametitle{Décomposition d'une homographie}
+   Se ramener à  $H_{N,\lambda} : (x,y) \mapsto \left(\frac{\lambda x}{1+Nx},\frac{\lambda y}{1+Nx}\right)$ par des affinités :
+   \[H = A_1 H_{N,\lambda} A_2\]
+   \begin{figure}
+    \centering
+  \subfig{balloon}
+    \arrow
+    \subfig{Image_homo_particuliere_opt}
+    \caption{Effet de l'homographie particulière}
+   \end{figure}
+  \end{frame}
+  
+
+  
+\subsubsection{Visualisation de la décomposition}
+
+  \begin{frame}
+  \begin{figure}
+   \centering
+   \includegraphics[width=100mm]{beamer_decompo_all.png}
+   \caption{Homographie quelconque vue comme un mouvement de caméra}
+  \end{figure}
+  \end{frame}
+
+  \begin{frame}
+  \begin{figure}
+   \centering
+   \includegraphics[width=100mm]{beamer_decompo1_rotation_phi.png}
+   \caption{Première rotation}
+  \end{figure}
+  \end{frame}
+
+  \begin{frame}
+  \begin{figure}
+   \centering
+   \includegraphics[width=100mm]{beamer_decompo2_homo_part.png}
+   \caption{Homographie unidirectionnelle}
+  \end{figure}
+  \end{frame}
+
+  \begin{frame}
+  \begin{figure}
+   \centering
+   \includegraphics[width=100mm]{beamer_decompo3_rotation_psi.png}
+   \caption{Seconde rotation}
+  \end{figure}
+  \end{frame}
+
+  \begin{frame}
+  \begin{figure}
+   \centering
+   \includegraphics[width=100mm]{beamer_decompo_bilan.png}
+   \caption{Décomposition}
+  \end{figure}
+  \end{frame}
 
 %truc simon a inséréer sur affine
 
-\subsection{Méthode anti-aliasing pour les affinités}
+\subsection{Traitement des rotations}
 
 \begin{frame}{Etude des \emph{shears} (cisaillement)}
 
@@ -324,72 +385,36 @@ $\ra$ trois étapes :
 \end{frame}
 
 
- \subsection{Décomposition d'une homographie}
-
-  \subsubsection{Homographie unidirectionnelle}
-
-  \begin{frame} %ici tout est à changer
-  \frametitle{Décomposition d'une homographie}
-   Se ramener à  $H_{N,\lambda} : (x,y) \mapsto \left(\frac{\lambda x}{1+Nx},\frac{\lambda y}{1+Nx}\right)$ par des affinités :
-   \[H = A_1 H_{N,\lambda} A_2\]
-   \begin{figure}
-    \centering
-  \subfig{balloon}
-    \arrow
-    \subfig{Image_homo_particuliere_opt}
-    \caption{Effet de l'homographie particulière}
-   \end{figure}
-  \end{frame}
-  
-
-  
-\subsubsection{Visualisation de la décomposition}
-
-  \begin{frame}
-  \begin{figure}
-   \centering
-   \includegraphics[width=100mm]{beamer_decompo_all.png}
-   \caption{Homographie quelconque vue comme un mouvement de caméra}
-  \end{figure}
-  \end{frame}
-
-  \begin{frame}
-  \begin{figure}
-   \centering
-   \includegraphics[width=100mm]{beamer_decompo1_rotation_phi.png}
-   \caption{Première rotation}
-  \end{figure}
-  \end{frame}
-
-  \begin{frame}
-  \begin{figure}
-   \centering
-   \includegraphics[width=100mm]{beamer_decompo2_homo_part.png}
-   \caption{Homographie unidirectionnelle}
-  \end{figure}
-  \end{frame}
-
-  \begin{frame}
-  \begin{figure}
-   \centering
-   \includegraphics[width=100mm]{beamer_decompo3_rotation_psi.png}
-   \caption{Seconde rotation}
-  \end{figure}
-  \end{frame}
-
-  \begin{frame}
-  \begin{figure}
-   \centering
-   \includegraphics[width=100mm]{beamer_decompo_bilan.png}
-   \caption{Décomposition}
-  \end{figure}
-  \end{frame}
-
-
-
-
-
-
+ \subsection{Traitement des homographies unidirectionnelles}
+     
+     
+     
+    
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+\section{Expériences et résultats}
+     
+     
+     
+    
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 \begin{frame}{Perspectives}
 
 \textbf{A suivre :} Travail sur $H_{N,\lambda}$ :\\
