@@ -316,6 +316,27 @@ $\ra$ trois étapes :
 
 \end{frame}
 
+\begin{frame}{Traitement d'une opération élémentaire}
+
+
+\begin{block}{Formule de convolution discrète}
+Interpolation au point $ (a_0i+a_1j+t-k)$ :
+\begin{equation}
+	img_f[i][j] = \displaystyle{\sum_k}h\left(\frac{a_0i+a_1j+t-k}{s}\right)img[k][j]
+	\label{formule_convolution_discrete}
+	\end{equation}
+
+\end{block}
+
+
+\begin{block}{Filtre utilisé}
+\begin{equation}
+	h : x \mapsto \sinc(\frac{x}{T})\frac{\cos(\frac{\pi\beta x}{T})}{1-\frac{4\beta^2x^2}{T^2}}
+	\label{szeliski_definition_raisedCosineWeightedSinc}
+	\end{equation}
+\end{block}
+
+\end{frame}
 
 
 
