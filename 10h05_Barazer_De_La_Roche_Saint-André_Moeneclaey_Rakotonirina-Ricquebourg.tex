@@ -91,7 +91,7 @@
   \section{Qu'est-ce qu'une homographie ?}
   \begin{frame}
   \frametitle{Position du problème}
-   \small{Formule générale : $h : (x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ telle que $img_f(x,y)=img(h(x,y))$}
+   \small{Formule générale : $H : (x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ telle que $img_f(x,y)=img(H(x,y))$}
    \begin{figure}
     \centering
     \subfig{BriquesOriginal.png}
@@ -102,7 +102,7 @@
   \end{frame}
   \begin{frame}
     \frametitle{Position du problème}
-   \small{Formule générale : $h : (x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ telle que $img_f(x,y)=img(h(x,y))$}
+   \small{Formule générale : $H : (x,y)\mapsto \left(\frac{ax+by+p}{rx+sy+t},\frac{cx+dy+q}{rx+sy+t}\right)$ telle que $img_f(x,y)=img(H(x,y))$}
    \begin{figure}
     \centering
     \subfig{BriquesOriginal.png}
@@ -117,7 +117,7 @@
  
  \fram{Méthode naïve}{
  	\cols{
- 		\col{5cm}{$img_f(x,y)=img(h(x,y))$ 
+ 		\col{5cm}{$img_f(x,y)=img(H(x,y))$ 
 			\medbreak
 			On applique naïvement cette formule : valeur du pixel le plus proche
 			\fig{0.25}{imageproque.jpg}{Pourquoi cela ne fonctionne pas}
@@ -344,9 +344,9 @@ $\ra$ trois étapes :
   \begin{frame}
   Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$f(x,y)$]{\includegraphics[width=40mm]{VisuDecompo1.jpg}}
+   \subfigure[$img(x,y)$]{\includegraphics[width=40mm]{VisuDecompo1.jpg}}
    \Arrow
-   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2.jpg}}
+   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2.jpg}}
    \caption{Première affinité}
   \end{figure}
   \end{frame}
@@ -354,7 +354,7 @@ $\ra$ trois étapes :
   \begin{frame}
   Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2.jpg}}
+   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2.jpg}}
    \caption{Première image intermédiaire}
   \end{figure}
   \end{frame}
@@ -362,9 +362,9 @@ $\ra$ trois étapes :
   \begin{frame}
   Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2pti.jpg}}
+   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2pti.jpg}}
    \Arrow
-   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3pti.jpg}}
+   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3pti.jpg}}
    \caption{Homographie particulière}
   \end{figure}
   \end{frame}
@@ -372,9 +372,9 @@ $\ra$ trois étapes :
   \begin{frame}
   Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2grid.jpg}}
+   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2grid.jpg}}
    \Arrow
-   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3grid.jpg}}
+   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3grid.jpg}}
    \caption{Homographie particulière}
   \end{figure}
   \end{frame}
@@ -382,9 +382,9 @@ $\ra$ trois étapes :
   \begin{frame}
   Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2pti.jpg}}
+   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2pti.jpg}}
    \Arrow
-   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3pti.jpg}}
+   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3pti.jpg}}
    \caption{Homographie particulière}
   \end{figure}
   \end{frame}
@@ -392,7 +392,7 @@ $\ra$ trois étapes :
   \begin{frame}
   Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3.jpg}}
+   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3.jpg}}
    \caption{Deuxième image intermédiaire}
   \end{figure}
   \end{frame}
@@ -400,9 +400,9 @@ $\ra$ trois étapes :
   \begin{frame}
   Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3.jpg}}
+   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3.jpg}}
    \Arrow
-   \subfigure[$f(A_1H_{N,\lambda}A_2(x,y))$]{\includegraphics[width=40mm]{VisuDecompo4.jpg}}
+   \subfigure[$img(A_1H_{N,\lambda}A_2(x,y))$]{\includegraphics[width=40mm]{VisuDecompo4.jpg}}
    \caption{Rotation}
   \end{figure}
   \end{frame}
@@ -410,9 +410,9 @@ $\ra$ trois étapes :
   \begin{frame}
   Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$f(x,y)$]{\includegraphics[width=30mm]{VisuDecompo1.jpg}}
+   \subfigure[$img(x,y)$]{\includegraphics[width=30mm]{VisuDecompo1.jpg}}
    \raisebox{7\height}{$\longrightarrow$}
-   \subfigure[$f(A_1(x,y))$]{\includegraphics[width=30mm]{VisuDecompo2.jpg}}\\
+   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=30mm]{VisuDecompo2.jpg}}\\
    $\downarrow$
    \phantom{$\longrightarrow$}
    \phantom{$\longrightarrow$}
@@ -420,9 +420,9 @@ $\ra$ trois étapes :
    \phantom{$\longrightarrow$}
    \phantom{$\longrightarrow$}
    $\downarrow$\\
-   \subfigure[$f(H(x,y))$]{\includegraphics[width=30mm]{VisuDecompo4.jpg}}
+   \subfigure[$img(H(x,y))$]{\includegraphics[width=30mm]{VisuDecompo4.jpg}}
    \raisebox{7\height}{\scalebox{1}{$\longleftarrow$}}
-   \subfigure[$f(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=30mm]{VisuDecompo3.jpg}}
+   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=30mm]{VisuDecompo3.jpg}}
    \caption{Homographie totale}
   \end{figure}
   \end{frame}
@@ -478,6 +478,6 @@ $\ra$ trois étapes :
 \begin{frame}{DÃ©tail de la mÃ©thode de SzÃ©liski}
 \paragraph{MÃ©thode d'interpolation}
 \begin{equation*}
-f'(i,j)=\underset{k}{\sum}
+img_f(i,j)=\underset{k}{\sum}
 \end{equation*}
 \end{frame}
