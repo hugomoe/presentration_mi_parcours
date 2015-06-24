@@ -71,13 +71,13 @@
   
   Bibliographie :
      
- \  \underline{Pyramidal parametrics} L. Williams - 1983
+ \  \underline{Pyramidal parametrics} L. Williams - 1983
   
-   \underline{Texture mapping polygons in perspective} PS. Heckbert - 1983
+   \underline{Texture mapping polygons in perspective} PS. Heckbert - 1983
  
-   \underline{Real-time rendering} T. Akenine-Möller, E. Haines, N. Hoffman - 2008 
+   \underline{Real-time rendering} T. Akenine-Möller, E. Haines, N. Hoffman - 2008 
     
-   \underline{High-quality multi-pass image resampling} R. Szeliski, S. Winder, \& M. Uyttendaele - 2010
+   \underline{High-quality multi-pass image resampling} R. Szeliski, S. Winder, \& M. Uyttendaele - 2010
     
     }
   \end{frame} 
@@ -330,7 +330,7 @@ $\ra$ trois étapes :
 
   \begin{frame} %ici tout est à changer
   \frametitle{Décomposition d'une homographie}
-   Se ramener à  $H_{N,\lambda} : (x,y) \mapsto \left(\frac{\lambda x}{1+Nx},\frac{\lambda y}{1+Nx}\right)$ par des affinités :
+   Se ramener à  $H_{N,\lambda} : (x,y) \mapsto \left(\frac{\lambda x}{1+Nx},\frac{\lambda y}{1+Nx}\right)$ par des affinités :
    \[H = A_1 H_{N,\lambda} A_2\]
    \begin{figure}
     \centering
@@ -343,90 +343,45 @@ $\ra$ trois étapes :
   
 
   
-\subsubsection{Visualisation d'une décomposition}
+\subsubsection{Visualisation de la décomposition}
+
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$img(x,y)$]{\includegraphics[width=40mm]{VisuDecompo1.jpg}}
-   \Arrow
-   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2.jpg}}
-   \caption{Première affinité}
+   \centering
+   \includegraphics[width=100mm]{beamer_decompo_all.png}
+   \caption{Homographie quelconque vue comme un mouvement de caméra}
   \end{figure}
   \end{frame}
-  
+
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2.jpg}}
-   \caption{Première image intermédiaire}
+   \centering
+   \includegraphics[width=100mm]{beamer_decompo1_rotation_phi.png}
+   \caption{Première rotation}
   \end{figure}
   \end{frame}
-  
+
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2pti.jpg}}
-   \Arrow
-   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3pti.jpg}}
-   \caption{Homographie particulière}
+   \centering
+   \includegraphics[width=100mm]{beamer_decompo2_homo_part.png}
+   \caption{Homographie unidirectionnelle}
   \end{figure}
   \end{frame}
-  
+
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2grid.jpg}}
-   \Arrow
-   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3grid.jpg}}
-   \caption{Homographie particulière}
+   \centering
+   \includegraphics[width=100mm]{beamer_decompo3_rotation_psi.png}
+   \caption{Seconde rotation}
   \end{figure}
   \end{frame}
-  
+
   \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
   \begin{figure}
-   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=40mm]{VisuDecompo2pti.jpg}}
-   \Arrow
-   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3pti.jpg}}
-   \caption{Homographie particulière}
-  \end{figure}
-  \end{frame}
-  
-  \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
-  \begin{figure}
-   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3.jpg}}
-   \caption{Deuxième image intermédiaire}
-  \end{figure}
-  \end{frame}
-  
-  \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
-  \begin{figure}
-   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=40mm]{VisuDecompo3.jpg}}
-   \Arrow
-   \subfigure[$img(A_1H_{N,\lambda}A_2(x,y))$]{\includegraphics[width=40mm]{VisuDecompo4.jpg}}
-   \caption{Rotation}
-  \end{figure}
-  \end{frame}
-  
-  \begin{frame}
-  Cas de la décomposition $H=A_1H_{N,\lambda}A_2$ avec $A_1$ une affinité et $A_2$ une rotation.
-  \begin{figure}
-   \subfigure[$img(x,y)$]{\includegraphics[width=30mm]{VisuDecompo1.jpg}}
-   \raisebox{7\height}{$\longrightarrow$}
-   \subfigure[$img(A_1(x,y))$]{\includegraphics[width=30mm]{VisuDecompo2.jpg}}\\
-   $\downarrow$
-   \phantom{$\longrightarrow$}
-   \phantom{$\longrightarrow$}
-   \phantom{$\longrightarrow$}
-   \phantom{$\longrightarrow$}
-   \phantom{$\longrightarrow$}
-   $\downarrow$\\
-   \subfigure[$img(H(x,y))$]{\includegraphics[width=30mm]{VisuDecompo4.jpg}}
-   \raisebox{7\height}{\scalebox{1}{$\longleftarrow$}}
-   \subfigure[$img(A_1H_{N,\lambda}(x,y))$]{\includegraphics[width=30mm]{VisuDecompo3.jpg}}
-   \caption{Homographie totale}
+   \centering
+   \includegraphics[width=100mm]{beamer_decompo_bilan.png}
+   \caption{Décomposition}
   \end{figure}
   \end{frame}
 
