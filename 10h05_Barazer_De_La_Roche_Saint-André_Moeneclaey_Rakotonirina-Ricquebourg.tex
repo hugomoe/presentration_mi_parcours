@@ -371,12 +371,24 @@ Interpolation au point $ (a_0i+a_1j+t)$ :
 
 \subsection{Comparaison des rotations}
 
-\begin{frame}{Traitement des rotations}
-\begin{figure}
-\centering
-\includegraphics[width=6cm]{rotation_all.png}
-\caption{Comparaison des rotations}
-\end{figure}
+\begin{frame}
+ \scriptsize{
+ \begin{figure}
+   \subfigure[\scriptsize{Originale}]{\includegraphics[width=28mm]{lena.png}}
+   \hfill
+   \subfigure[\scriptsize{Szeliski}]{\includegraphics[width=28mm]{lena_10_rotations_szeli.png}}
+   \hfill
+   \subfigure[\scriptsize{Yaroslavsky}]{\includegraphics[width=28mm]{lena_10_rotations_yaro.png}}
+   \\
+   \subfigure[\scriptsize{Linéaire}]{\includegraphics[width=28mm]{linear_10rot_lena.png}}
+   \hfill
+   \subfigure[\scriptsize{Szeliski (erreur)}]{\includegraphics[width=28mm]{raised-cosine_beta0_36_10rot_lena_error.png}}
+   \hfill
+   \subfigure[\scriptsize{Yaroslavsky (erreur)}]{\includegraphics[width=28mm]{lena_10_rotations_yaro_error.png}}
+ \caption{Comparaison des rotations (10 rotations de 36 degrés)}
+ \label{rotalena}
+ \end{figure}
+ }
 \end{frame}
 
 
