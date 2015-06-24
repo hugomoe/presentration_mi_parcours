@@ -69,23 +69,10 @@
  \AtBeginSection[]{
   \begin{frame}{Sommaire}
   \small \tableofcontents[currentsection, hideothersubsections]
-  {\scriptsize   
-  
-  Bibliographie :
-     
- \  \underline{Pyramidal parametrics} L. Williams - 1983
-  
-   \underline{Texture mapping polygons in perspective} PS. Heckbert - 1983
- 
-   \underline{Real-time rendering} T. Akenine-Möller, E. Haines, N. Hoffman - 2008 
-    
-   \underline{High-quality multi-pass image resampling} R. Szeliski, S. Winder, \& M. Uyttendaele - 2010
-    
-    }
   \end{frame} 
 }
 
- \begin{document}
+\begin{document}
  
 \maketitle
 
@@ -261,6 +248,9 @@
 
 %truc simon a inséréer sur affine
 
+
+
+
 \subsection{Traitement des rotations}
 
 \begin{frame}{Etude des \emph{shears} (cisaillement)}
@@ -303,6 +293,8 @@ $\ra$ trois étapes :
 \end{columns}
 \end{frame}
 
+
+
 \begin{frame}{Illustration de la méthode dans le domaine de Fourier }
 
 \begin{figure}
@@ -339,6 +331,9 @@ $\ra$ trois étapes :
 
 \end{frame}
 
+
+
+
 \begin{frame}{Méthode finale pour les affinités}
 %rajouter qqvh....
 \begin{itemize}
@@ -363,27 +358,6 @@ $\ra$ trois étapes :
 \end{frame}
 
 
-%eventuellement expérience affinité
-
-\fram{}{\fig{0.4}{shearAliase.png}{\emph{Shear} par la méthode naïve}}
-
-\fram{}{\fig{0.4}{shearPasAliase.png}{\emph{Shear} par la méthode de Szeliski}}
-
-\begin{frame}
-\begin{figure}
-\centering
-\includegraphics[width=6cm]{zoom_shear_aliase.png}
-\caption{Méthode naïve}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-\begin{figure}
-\centering
-\includegraphics[width=6cm]{zoom_shear_pas_aliase.png}
-\caption{Méthode de Szeliski}
-\end{figure}
-\end{frame}
 
 
  \subsection{Traitement des homographies unidirectionnelles}
@@ -419,15 +393,3 @@ $\ra$ trois étapes :
 % \fram{Schema pour le ripmap}{\image{0.5}{pbripmap}}
  
 \end{document}
- 
- 
- 
- 
- 
- 
-\begin{frame}{DÃ©tail de la mÃ©thode de SzÃ©liski}
-\paragraph{MÃ©thode d'interpolation}
-\begin{equation*}
-img_f(i,j)=\underset{k}{\sum}
-\end{equation*}
-\end{frame}
