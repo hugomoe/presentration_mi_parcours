@@ -251,12 +251,36 @@ Une homographie unidirectionnelle est séparable $h=h_1 \circ h_2$
 
 \end{frame}
 
+\begin{frame}{Ré-échantillonnage utilisant les images intégrales (images $1D$)}
+On utilise le filtre :
+$~
+\mathcal{G}_3^d= \frac{1}{d^3}(\mathds{1}_{]-\frac{d}{2},\frac{d}{2}[} * \mathds{1}_{]-\frac{d}{2},\frac{d}{2}[} * \mathds{1}_{]-\frac{d}{2},\frac{d}{2}[})
+$
+
+\begin{block}{Si $f$ est continue par morceau}
+\small{\begin{equation*}
+(f*\mathcal{G}_3^d)(y)=\frac{F_3(y+\frac{3d}{2})-3F_3(y+\frac{d}{2})+3F_3(y-\frac{d}{2})+F_3(y-\frac{3d}{2})}{d^3}
+\end{equation*}}
+$F_3$ primitive troisième de $f$
+\end{block}
 
 
+Si $(f_k)$ est une image discrète $1D$ 
+\begin{itemize}
+\item On l'interpole par une fonction constante par morceau $F_0$
+\item On calcule $F_4$   
+\item On calcule $f*\mathds{1}_{]-\frac{1}{2},\frac{1}{2}[}*\mathcal{G}_3^d$ grâce à $F_4$
+\end{itemize}
+\end{frame}
+\begin{frame}{Illustration sur un sur-échantillonnage}
 
-
-
-
+\begin{figure}
+\centering
+\subfigure[interpolation par $F_0$]{\includegraphics[width=4cm]{interp_test.png}}
+\subfigure[convolution avec $\mathds{1}_{]-\frac{1}{2},\frac{1}{2}[}*\mathcal{G}_3^d~~~~d=0.25$] {\includegraphics[width=4cm]{convol_4_int_test.png}}
+\caption{utilisation de l'image intégrale}
+\end{figure}
+\end{frame}
 
 
 \subsection{Traitement des rotations}
