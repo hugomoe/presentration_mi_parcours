@@ -259,6 +259,12 @@ On utilise le filtre :
 $~
 \mathcal{G}_3^d= \frac{1}{d^3}(\mathds{1}_{]-\frac{d}{2},\frac{d}{2}[} * \mathds{1}_{]-\frac{d}{2},\frac{d}{2}[} * \mathds{1}_{]-\frac{d}{2},\frac{d}{2}[})
 $
+\begin{figure}
+\centering
+\includegraphics[width=5cm]{filtre_g3.png}
+\caption{tracé de $\mathcal{G}_3^20}
+\end{figure}
+
 
 \begin{block}{Si $f$ est continue par morceau}
 \small{\begin{equation*}
@@ -267,6 +273,7 @@ $
 $F_3$ primitive troisième de $f$
 \end{block}
 
+\end{frame}{Méthode et illustrations}
 
 Si $(f_k)$ est une image discrète $1D$ 
 \begin{itemize}
@@ -274,9 +281,6 @@ Si $(f_k)$ est une image discrète $1D$
 \item On calcule $F_4$   
 \item On calcule $F_0 *\mathds{1}_{]-\frac{1}{2},\frac{1}{2}[}*\mathcal{G}_3^d$ grâce à $F_4$
 \end{itemize}
-\end{frame}
-\begin{frame}{Illustration sur un sur-échantillonnage}
-
 \begin{figure}
 \centering
 \subfigure[interpolation par $F_0$]{\includegraphics[width=4cm]{interp_test.png}}
