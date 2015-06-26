@@ -255,23 +255,24 @@ Une homographie unidirectionnelle est séparable $h=h_1 \circ h_2$
 \end{frame}
 
 \begin{frame}{Ré-échantillonnage utilisant les images intégrales (images $1D$)}
+\small{
 On utilise le filtre :
 $~
 \mathcal{G}_3^d= \frac{1}{d^3}(\mathds{1}_{]-\frac{d}{2},\frac{d}{2}[} * \mathds{1}_{]-\frac{d}{2},\frac{d}{2}[} * \mathds{1}_{]-\frac{d}{2},\frac{d}{2}[})
 $
+
+
+\begin{block}{Si $f$ est continue par morceau}
+\begin{equation*}
+(f*\mathcal{G}_3^d)(y)=\frac{F_3(y+\frac{3d}{2})-3F_3(y+\frac{d}{2})+3F_3(y-\frac{d}{2})-F_3(y-\frac{3d}{2})}{d^3}
+\end{equation*}}
+$F_3$ primitive troisième de $f$
+\end{block}}
 \begin{figure}
 \centering
 \includegraphics[width=5cm]{filtre_g3.png}
 \caption{tracé de $\mathcal{G}_3^20$}
 \end{figure}
-
-
-\begin{block}{Si $f$ est continue par morceau}
-\small{\begin{equation*}
-(f*\mathcal{G}_3^d)(y)=\frac{F_3(y+\frac{3d}{2})-3F_3(y+\frac{d}{2})+3F_3(y-\frac{d}{2})-F_3(y-\frac{3d}{2})}{d^3}
-\end{equation*}}
-$F_3$ primitive troisième de $f$
-\end{block}
 
 \end{frame}
 \begin{frame}{Méthode et illustrations}
