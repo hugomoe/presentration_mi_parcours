@@ -291,10 +291,22 @@ Si $(f_k)$ est une image discrète $1D$
 
 
 \subsection{Traitement des rotations}
+\begin{frame}{Choix du traitement des rotations}
+
+
+
+%rajouter qqvh....
+\begin{itemize}
+\item Rappel : \[H = T R_\phi \tilde H R_\psi\]
+\item rotations : cas particulier des affinité. 
+\item Méthode de traitement des affinité introduite par Szeliski, \underline{High quality multi-pass image resampling} en 2010.
+\item Affinités $\ra$ composée de deux \emph{shears}.
+
+\end{itemize}
 
 \begin{frame}{Traitement des affinités : cas des \emph{shears} (cisaillement)}
 
-Introduit par Szeliski, \underline{High quality multi-pass image resampling} en 2010. %mettre en bas de page ?
+
 
 \begin{itemize}
 \item minimiser l'aliasing sans filtrage préalable.
