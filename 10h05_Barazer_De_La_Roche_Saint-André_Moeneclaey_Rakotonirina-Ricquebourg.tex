@@ -114,8 +114,8 @@
  	\cols{
  		\col{5cm}{$img_f(x,y)=img(H(x,y))$ 
 			\medbreak
-			On applique naïvement cette formule : valeur du pixel le plus proche
-			\fig{0.25}{imageproque.jpg}{Pourquoi cela ne fonctionne pas}
+			Application naïve - la formule
+			\fig{0.25}{imageproque.jpg}{Image d'un pixel}
 		}
 		\col{4.5cm}{
 			\fig{0.3}{barbara}{Une application naïve sur une image périodique}
@@ -169,7 +169,7 @@
     avec $b=c=s=0$
    \end{block}
    \begin{block}{Théorème}
-    Pour toute homographie $H$, il existe $T$ une translation, $R_\phi$ et $R_\psi$ des rotations et $\tilde H$ une homographie unidirectionnelle telle que
+    Pour toute homographie $H$, il existe $T$ une translation, $R_\phi$ et $R_\psi$ des rotations et $\tilde H$ une homographie unidirectionnelle telles que
     \[H = T R_\phi \tilde H R_\psi\]
    \end{block}
   \end{frame}
@@ -266,7 +266,7 @@ $F_3$ primitive troisième de $f$
 \begin{frame}{Méthode et illustrations}
 Si $(f_k)$ est une image discrète $1D$ 
 \begin{itemize}
-\item On l'interpole par une fonction constante par morceau $F_0$
+\item On l'interpole par une fonction constante par morceaux $F_0$
 \item On calcule $F_4$   
 \item On calcule $F_0 *\mathds{1}_{]-\frac{1}{2},\frac{1}{2}[}*\mathcal{G}_3^d$ grâce à $F_4$
 \end{itemize}
@@ -285,11 +285,11 @@ Si $(f_k)$ est une image discrète $1D$
 %rajouter qqvh....
 
 %\blo{Rappel}{Pour toute homographie $H$ : \[H = T R_\phi \tilde H R_\psi\]}
+\blo{Rappel}{Pour toute homographie $H$ : \[H = T R_\phi \tilde H R_\psi\]}
 \begin{itemize}
-\item  Rappel : Pour toute homographie $H$ : \[H = T R_\phi \tilde H R_\psi\]
-\item Rotations : cas particulier d'affinité. 
-\item Méthode de traitement des affinités introduite par Szeliski, \underline{High quality multi-pass image resampling} en 2010.
-\item Affinités $\ra$ composée de deux \emph{shears}.
+\item Rotations : cas particulier de transformation linéaire. 
+\item Méthode de traitement des transformations affines introduite par Szeliski, \underline{High quality multi-pass image resampling} en 2010.
+\item Affinités $\ra$ composée de deux \emph{shears} (cisaillement).
 \end{itemize}
 \end{frame}
 
@@ -445,6 +445,16 @@ Interpolation au point $ (a_0i+a_1j+t)$ :
 \fram{}{ \dblfig{0.35}{img_geo_5.png}{Homographie 1 : décomposition}{1.5}{img_geo_moustache.png}{(détail)} }
 \fram{}{ \dblfig{0.35}{img_ripmap_2.png}{Homographie 2 : Ripmap}{1.5}{img_ripmap_moustache_2.png}{(détail)} }
 \fram{}{ \dblfig{0.35}{img_f_2.png}{Homographie 2 : décomposition}{1.5}{img_geo_moustache_2.png}{(détail)} }
+
+
+\fram{Conclusion}{
+	On a présenté ici :
+	\begin{itemize}
+	\item Décomposition géométrique des homographies
+	\item Implémentations des différentes composantes de la décomposition
+	\item Comparaison du résultat à quelques méthodes connues
+	\end{itemize}
+}
 
 
 
