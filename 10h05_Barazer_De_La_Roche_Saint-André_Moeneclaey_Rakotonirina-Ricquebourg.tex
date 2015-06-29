@@ -273,7 +273,7 @@ Si $(f_k)$ est une image discrète $1D$
 \begin{figure}
 \centering
 \subfigure[interpolation par $F_0$]{\includegraphics[width=4cm]{interp_test.png}}
-\subfigure[convolution avec $\mathds{1}_{]-\frac{1}{2},\frac{1}{2}[}*\mathcal{G}_3^d~~~~d=0.25$] {\includegraphics[width=4cm]{convol_4_int_test.png}}
+\subfigure[convolution avec $\mathds{1}_{]-\frac{1}{2},\frac{1}{2}[}*\mathcal{G}_3^d~~~~d=0.5$] {\includegraphics[width=4cm]{convol_4_int_test.png}}
 \caption{utilisation de l'image intégrale}
 \end{figure}
 \end{frame}
@@ -297,7 +297,7 @@ Si $(f_k)$ est une image discrète $1D$
 \begin{frame}{Traitement des affinités : cas des \emph{shears} (cisaillement)}
 
 \begin{itemize}
-\item minimiser l'aliasing sans filtrage préalable.
+\item minimiser l'aliasing avec un minimum de perte dans le spectre.
 \end{itemize}
 
 \begin{columns}
@@ -390,7 +390,7 @@ Interpolation au point $ (a_0i+a_1j+t)$ :
 \begin{itemize}
 \item Affinités $\ra$ composée de deux \emph{shears}.
 %$A=S_v \circ S_h$
-\item translations sur les lignes et les colonnes.
+
 %\item On réutilise la méthode développée pour les \emph{shears}.
 %\item L'algorithme final se décompose en 6 étapes que l'on peut réduire à  4.
 \end{itemize}
